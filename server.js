@@ -1,24 +1,14 @@
 let express = require('express')
 let app = express()
 let db = require('./db')
-let cors = require('cors');
-let userModel = require('./model/userModel')
-let imagesModel = require('./model/imgModel')
+let imgRouter = require('./router/imgRouter')
 db.then(() => {
-    app.use(express.urlencoded({
-        extended: true
-    }))  
+    app.use(express.urlencoded({extended: true}))  
     app.use(express.static('public'))
-    app.get('/', async (req, res) => {
-        let result = await userModel.findOne({
-            name: '班长'
-        })     
-        res.send(__dirname + '/public/img/rBUFH1-P7D-AVX2WAAHGORhHbJM660.jpg')
-    })
-    app.get('/img',  async(req, res)=> {
-        let result = await imagesModel.find ()
-        res.send(result)
-    })
+    app.use(imgRouter)      //获取图片资源模块
+}).catch(err=>{
+    console.log('数据库连接失败',err);
+    
 })
 app.listen(3000, (err) => {
     if (!err) console.log('服务器启动成功');
