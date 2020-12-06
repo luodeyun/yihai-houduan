@@ -14,9 +14,9 @@ let imgSchema = new Schema({
         type:Date,
         default:Date.now()
       },
-      enable_flag:{
+    enable_flag:{
         type:String,
         default:'Y'
-      },
+    },
 })
 module.exports=mongoose.model('images',imgSchema)
