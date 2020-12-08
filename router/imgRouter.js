@@ -15,11 +15,11 @@ router.get('/img',  async(req, res)=> {
 router.get('/youji',async(req,res)=>{
     try{
         let result = await youjiModel.find()
+        console.log(result);
         res.send(result)
     }catch(err){
         console.log(err);
         res.send('网络异常')
-        
     }
 })
 module.exports = router

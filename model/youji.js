@@ -1,23 +1,23 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
-let YoujiModel = new Schema({
+let YoujiSchema = new Schema({
     imgname:{
-        type:string,
+        type:String,
         require:true,
         unique:true
     },
     address:{
-        type:string,
+        type:String,
         required:true,
         unique:true
     },
     nickwrite:{
-        type:string,
+        type:String,
         required:true,
         unique:true
     },
     counter:{
-        type:number,
+        type:Number,
         required:true,
         unique:true
     },
@@ -30,4 +30,4 @@ let YoujiModel = new Schema({
         default:'Y'
     },
 })
-module.exports = mongoose.model('youji',YoujiModel)
+module.exports = mongoose.model('youjis',YoujiSchema)
