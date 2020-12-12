@@ -2,12 +2,15 @@ let express = require('express')
 let app = express()
 let db = require('./db')
 let imgRouter = require('./router/imgRouter')
-let login = require('./router/login')
+let loginRouter = require('./router/loginRouter')
+let discoverRouter= require('./router/discoverRouter')
 let session = require('express-session')
 let bodyParser = require('body-parser')
 app.use(session({
     secret:"ekybocat",
     name:"sessionId",
+    
+  saveUninitialized: true,//添加这
     resave:false,
     saveUninitalized:false,
     cookie: {
@@ -18,7 +21,8 @@ db.then(() => {
     app.use(bodyParser.urlencoded({extended:true}))
     app.use(express.static('public'))
     app.use(imgRouter)      //获取图片资源模块
-    app.use(login)
+    app.use(loginRouter)
+    app.use(discoverRouter)
 }).catch(err=>{
     console.log('数据库连接失败',err);
     

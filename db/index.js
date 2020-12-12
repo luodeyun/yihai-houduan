@@ -13,7 +13,7 @@ const DB_URL = 'localhost:27017'
 //构建一个Promise实例，用于管理数据库连接
 module.exports = new Promise((resolve,reject)=>{
   //2.连接数据库
-  mongoose.connect(`mongodb://${DB_URL}/${DB_NAME}`,{useNewUrlParser:true })
+  mongoose.connect(`mongodb://${DB_URL}/${DB_NAME}`,{useNewUrlParser:true , useUnifiedTopology: true })
 
   //3.监听连接状态
   mongoose.connection.on('open',(err)=>{
