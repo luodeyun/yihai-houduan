@@ -4,6 +4,7 @@ let db = require('./db')
 let imgRouter = require('./router/imgRouter')
 let loginRouter = require('./router/loginRouter')
 let discoverRouter= require('./router/discoverRouter')
+let carRouter= require('./router/carRouter')
 let session = require('express-session')
 let bodyParser = require('body-parser')
 app.use(session({
@@ -23,9 +24,9 @@ db.then(() => {
     app.use(imgRouter)      //获取图片资源模块
     app.use(loginRouter)
     app.use(discoverRouter)
+    app.use(carRouter)
 }).catch(err=>{
-    console.log('数据库连接失败',err);
-    
+    console.log('数据库连接失败',err)
 })
 app.listen(3000, (err) => {
     if (!err) console.log('服务器启动成功');

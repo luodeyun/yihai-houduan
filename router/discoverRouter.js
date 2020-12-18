@@ -12,8 +12,7 @@ router.get('/discover', async (req, res) => { //查询集体数据
 })                              
 router.get('/cover', async(req,res)=>{
   try{
-      let operationId = req.query.operationId     
-      console.log(operationId);      
+      let operationId = req.query.operationId          
       let resdata = await discoverModel.findOne({operationId})
       res.send(resdata.result)
   }catch(err){
