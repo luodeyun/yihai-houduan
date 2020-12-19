@@ -7,6 +7,7 @@ let discoverRouter= require('./router/discoverRouter')
 let carRouter= require('./router/carRouter')
 let session = require('express-session')
 let bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 app.use(session({
     secret:"ekybocat",
     name:"sessionId",
@@ -20,6 +21,7 @@ app.use(session({
   }));
 db.then(() => {
     app.use(bodyParser.urlencoded({extended:true}))
+    app.use(cookieParser())
     app.use(express.static('public'))
     app.use(imgRouter)      //获取图片资源模块
     app.use(loginRouter)

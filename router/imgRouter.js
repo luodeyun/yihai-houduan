@@ -1,5 +1,6 @@
 let imgModel = require('../model/imgModel')
 let youjiModel = require('../model/youjiModel')
+let tuijianModel = require('../model/tuijianyoujis')
 let { Router} = require('express')
 let router = new Router()
 
@@ -17,6 +18,15 @@ router.get('/youji',async(req,res)=>{
         let result = await youjiModel.find() 
         res.send(result)
     }catch(err){
+        res.send('网络异常')
+    }
+})
+router.get('/recommendyj',async(req,res)=>{
+    try{     
+      let result = await tuijianModel.find()
+        res.send(result)
+    }catch(err){
+        console.log(err);
         res.send('网络异常')
     }
 })
