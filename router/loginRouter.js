@@ -137,8 +137,7 @@ router.post('/login', async (req, res) => {
             phone,
             password
         })
-        console.log(finResult);
-        
+      if(finResult){
         let user = {
             phone,
            password
@@ -148,6 +147,14 @@ router.post('/login', async (req, res) => {
          phone, tokenKey,message:"登录成功",success:true,err:false,name:finResult.nick_name
         }
         res.send(obj)
+      }else{
+        obj={
+           message:"用户名密码不正确",success:false,err:true
+           }
+          res.send(obj)
+      }
+        
+       
     } else {
         res.send('验证码不正确')
     }
